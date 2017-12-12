@@ -10,14 +10,14 @@ using System.Data.Entity;
 
 namespace MaxNotas.Controllers
 {
-    public class CompanyController : Controller
+    public class InvoiceController : Controller
     {
         private EFContext context = new EFContext();
-
-        // GET: Companies
+        
+        // GET: Invoices
         public ActionResult Index()
         {
-            return View(context.Companies.OrderBy(c => c.Name));
+            return View(context.Invoices.OrderBy(c => c.Name));
         }
 
         public ActionResult Create()
@@ -27,14 +27,14 @@ namespace MaxNotas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Company company)
+        public ActionResult Create(Invoice invoice)
         {
-            context.Companies.Add(company);
+            context.Invoices.Add(invoice);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Companies/Edit/5
+        // GET: Invoices/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -43,27 +43,27 @@ namespace MaxNotas.Controllers
                 HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.Find(id);
-            if (company == null)
+            Invoice invoice = context.Invoices.Find(id);
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(invoice);
         }
 
-        // POST: Companies/Edit/5
+        // POST: Invoices/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company company)
+        public ActionResult Edit(Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(company).State =
+                context.Entry(invoice).State =
                 EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(company);
+            return View(invoice);
         }
 
         // GET: Testes/Details/5
@@ -74,15 +74,15 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.Find(id);
-            if (company == null)
+            Invoice invoice = context.Invoices.Find(id);
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(invoice);
         }
 
-        // GET: Companies/Delete/5
+        // GET: Invoices/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -90,23 +90,23 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.
+            Invoice invoice = context.Invoices.
             Find(id);
-            if (company == null)
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(invoice);
         }
 
-        // POST: Companies/Delete/5
+        // POST: Invoices/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Company company = context.Companies.
+            Invoice invoice = context.Invoices.
             Find(id);
-            context.Companies.Remove(company);
+            context.Invoices.Remove(invoice);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
