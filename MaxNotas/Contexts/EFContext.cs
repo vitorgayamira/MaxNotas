@@ -9,9 +9,12 @@ namespace MaxNotas.Contexts
 {
     public class EFContext : DbContext
     {
-        public EFContext() : base("Asp_Net_MVC_CS") { }
+        public EFContext() : base("Asp_Net_MVC_CS")
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<EFContext>());
+        }
 
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Fabricante> Fabricantes { get; set; }
     }
 }

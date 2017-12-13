@@ -10,14 +10,14 @@ using System.Data.Entity;
 
 namespace MaxNotas.Controllers
 {
-    public class InvoiceController : Controller
+    public class CategoriaController : Controller
     {
         private EFContext context = new EFContext();
-        
-        // GET: Invoices
+
+        // GET: Categorias
         public ActionResult Index()
         {
-            return View(context.Invoices.OrderBy(c => c.Name));
+            return View(context.Categorias.OrderBy(c => c.Name));
         }
 
         public ActionResult Create()
@@ -27,14 +27,14 @@ namespace MaxNotas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Invoice invoice)
+        public ActionResult Create(Categoria categoria)
         {
-            context.Invoices.Add(invoice);
+            context.Categorias.Add(categoria);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Invoices/Edit/5
+        // GET: Categorias/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -43,27 +43,27 @@ namespace MaxNotas.Controllers
                 HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Invoice invoice = context.Invoices.Find(id);
-            if (invoice == null)
+            Categoria categoria = context.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(categoria);
         }
 
-        // POST: Invoices/Edit/5
+        // POST: Categorias/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Invoice invoice)
+        public ActionResult Edit(Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(invoice).State =
+                context.Entry(categoria).State =
                 EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(invoice);
+            return View(categoria);
         }
 
         // GET: Testes/Details/5
@@ -74,15 +74,15 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Invoice invoice = context.Invoices.Find(id);
-            if (invoice == null)
+            Categoria categoria = context.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(categoria);
         }
 
-        // GET: Invoices/Delete/5
+        // GET: Categorias/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -90,23 +90,23 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Invoice invoice = context.Invoices.
+            Categoria categoria = context.Categorias.
             Find(id);
-            if (invoice == null)
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(categoria);
         }
 
-        // POST: Invoices/Delete/5
+        // POST: Categorias/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Invoice invoice = context.Invoices.
+            Categoria categoria = context.Categorias.
             Find(id);
-            context.Invoices.Remove(invoice);
+            context.Categorias.Remove(categoria);
             context.SaveChanges();
             return RedirectToAction("Index");
         }

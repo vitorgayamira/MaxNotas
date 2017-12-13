@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MaxNotas.Models.Company>
+﻿@model IEnumerable<MaxNotas.Models.Fabricante>
 
 @{
     Layout = null;
@@ -29,9 +29,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.CompanyId })
+                @Html.ActionLink("Edit", "Edit", new { id=item.FabricanteId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.FabricanteId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FabricanteId })
             </td>
         </tr>
     }

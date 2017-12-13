@@ -5,9 +5,9 @@ using System.Web;
 
 namespace MaxNotas.Models
 {
-    public class Company
+    public class Categoria
     {
-        public long CompanyId { get; set; }
+        public long CategoriaId { get; set; }
         public string Name { get; set; }
     }
 }

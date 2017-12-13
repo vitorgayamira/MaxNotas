@@ -10,14 +10,14 @@ using System.Data.Entity;
 
 namespace MaxNotas.Controllers
 {
-    public class CompanyController : Controller
+    public class FabricanteController : Controller
     {
         private EFContext context = new EFContext();
-
-        // GET: Companies
+        
+        // GET: Fabricantes
         public ActionResult Index()
         {
-            return View(context.Companies.OrderBy(c => c.Name));
+            return View(context.Fabricantes.OrderBy(c => c.Name));
         }
 
         public ActionResult Create()
@@ -27,14 +27,14 @@ namespace MaxNotas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Company company)
+        public ActionResult Create(Fabricante fabricante)
         {
-            context.Companies.Add(company);
+            context.Fabricantes.Add(fabricante);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Companies/Edit/5
+        // GET: Fabricantes/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -43,27 +43,27 @@ namespace MaxNotas.Controllers
                 HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.Find(id);
-            if (company == null)
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            if (fabricante == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(fabricante);
         }
 
-        // POST: Companies/Edit/5
+        // POST: Fabricantes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company company)
+        public ActionResult Edit(Fabricante fabricante)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(company).State =
+                context.Entry(fabricante).State =
                 EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(company);
+            return View(fabricante);
         }
 
         // GET: Testes/Details/5
@@ -74,15 +74,15 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.Find(id);
-            if (company == null)
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            if (fabricante == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(fabricante);
         }
 
-        // GET: Companies/Delete/5
+        // GET: Fabricantes/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -90,23 +90,23 @@ namespace MaxNotas.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Company company = context.Companies.
+            Fabricante fabricante = context.Fabricantes.
             Find(id);
-            if (company == null)
+            if (fabricante == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(fabricante);
         }
 
-        // POST: Companies/Delete/5
+        // POST: Fabricantes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Company company = context.Companies.
+            Fabricante fabricante = context.Fabricantes.
             Find(id);
-            context.Companies.Remove(company);
+            context.Fabricantes.Remove(fabricante);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
