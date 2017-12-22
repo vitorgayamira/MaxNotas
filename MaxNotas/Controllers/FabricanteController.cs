@@ -104,10 +104,12 @@ namespace MaxNotas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Fabricante fabricante = context.Fabricantes.
-            Find(id);
+            Fabricante fabricante = context.Fabricantes
+            .Find(id);
             context.Fabricantes.Remove(fabricante);
             context.SaveChanges();
+            TempData["Message"] = "Fabricante " +
+            fabricante.Name.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
 

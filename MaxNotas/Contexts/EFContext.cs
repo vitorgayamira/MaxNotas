@@ -11,7 +11,7 @@ namespace MaxNotas.Contexts
     {
         public EFContext() : base("Asp_Net_MVC_CS")
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<EFContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFContext>());
         }
 
         public DbSet<Categoria> Categorias { get; set; }
